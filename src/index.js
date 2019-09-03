@@ -1,5 +1,6 @@
 import Fingerprint2 from "../node_modules/fingerprintjs2";
 import GetBrowserFingerprinting from "../node_modules/get-browser-fingerprint";
+import GetBrowserFingerprintingFork from "./get-browser-fingerprint-fork";
 import SHA2 from "../node_modules/sha2";
 
 const output = document.createElement('dl')
@@ -19,6 +20,11 @@ new Promise((resolve) => {
     }, 500)
 }).then(() => new Promise((resolve) => {
     appendData('gbfp', GetBrowserFingerprinting())
+    resolve();
+})).then(() => new Promise((resolve) => {
+    const {result, data} = GetBrowserFingerprintingFork();
+    appendData('gbfp-fork', result)
+    console.log('gbfp-fork', data)
     resolve();
 })).then(() => {
     document.getElementById('done').textContent = "Done";
