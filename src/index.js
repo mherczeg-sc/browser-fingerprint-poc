@@ -13,7 +13,7 @@ document.body.appendChild(done);
 new Promise((resolve) => {
     setTimeout(() => {
         Fingerprint2.get((components) => {
-            appendData('fpjs2', SHA2.SHA256(components).toString("hex"))
+            appendData('fpjs2', SHA2.SHA256(JSON.stringify(components)).toString("hex"))
             console.log('fpjs2', components)
             resolve();
         })
